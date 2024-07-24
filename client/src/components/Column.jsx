@@ -77,16 +77,16 @@ const Column = ({
       ref={drop}
       className={`${
         isOver ? "bg-slate-200" : ""
-      } w-1/3 flex flex-col gap-3 min-h-[66.5vh] p-4`}
+      } w-1/3 flex flex-col gap-3 min-h-[66.5vh] p-4 `}
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between px-3 py-2 rounded-md">
         <span className={`text-${labelColor}-500 font-semibold`}>{label}</span>
         <span className="text-[rgba(0,0,0,0.3)] font-semibold">
           {tasks.length}
         </span>
       </div>
       {/* tasks */}
-      <div className=" flex flex-col gap-3">
+      <div className=" flex flex-col gap-2">
         {tasks.length !== 0 &&
           tasks.map((task) => (
             <Task key={task._id} data={task} setRenderApp={setRenderApp} />
@@ -97,7 +97,7 @@ const Column = ({
           className="w-max px-2 text-[rgba(0,0,0,0.5)] font-medium text-sm hover:text-black"
           onClick={() => setIsCreating(true)}
         >
-          Add Card +
+          Add Task +
         </button>
       )}
       {label === "Todo" && isCreating && (

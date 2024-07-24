@@ -1,18 +1,21 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 const CreateProject = ({ setRenderApp }) => {
+  const { id } = useParams();
   const [isCreating, setIsCreating] = useState(false);
   const [title, setTitle] = useState("");
 
   async function addProject(e) {
     e.preventDefault();
+   
     try {
       const response = await fetch("http://localhost:3000/project", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title }),
+        body: JSON.stringify({ title, id }),
       });
       if (!response.ok) {
         throw new Error("Failed to add project");

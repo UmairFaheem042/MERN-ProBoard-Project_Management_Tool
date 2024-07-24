@@ -19,7 +19,7 @@ const Header = () => {
           <span className="text-lg font-thin text-[rgba(0,0,0,0.4)] cursor-default">
             |
           </span> */}
-          <Link to={"/connect"}>
+          <Link to={"/signin"}>
             {/* <i className="ri-logout-box-r-line text-lg cursor-pointer"></i> */}
             <button className="bg-black text-white text-[0.9rem] px-3 py-2 rounded">
               Sign In

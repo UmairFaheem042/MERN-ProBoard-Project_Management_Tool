@@ -3,7 +3,7 @@ import { convertDatetime } from "../utils/datetime";
 import { Link, useParams } from "react-router-dom";
 
 const ProjectStrip = ({ project, setRenderApp }) => {
-  const { projectId } = useParams();
+  const { id, projectId } = useParams();
   const [title, setTitle] = useState(project.title);
   const [editing, setEditing] = useState(false);
 
@@ -57,11 +57,11 @@ const ProjectStrip = ({ project, setRenderApp }) => {
           className={` text-4xl font-bold w-full outline-none rounded-md border border-white ${
             editing && "bg-[rgba(0,0,0,0.04)] border-[rgba(0,0,0,0.08)] pl-2"
           } p-0 pl-0  transition-all`}
-          // defaultValue={project.length !== 0 && project.title}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           readOnly={!editing}
           rows={1}
+          required
         />
         <p className="font-normal text-sm text-[rgba(0,0,0,0.4)]">
           {" "}
@@ -72,29 +72,32 @@ const ProjectStrip = ({ project, setRenderApp }) => {
       <div className="flex gap-2">
         {!editing ? (
           <button
-            className=" min-w-[100px] h-min p-2 rounded-md"
+            className="flex gap-2 items-center justify-center bg-black text-white min-w-[120px] h-min p-2 rounded-md"
             onClick={() => {
               setEditing(true);
             }}
           >
-            Edit
+            <i className="ri-pencil-fill"></i>
+            <span>Edit</span>
           </button>
         ) : (
           <button
-            className="bg-black text-white min-w-[100px] h-min p-2 rounded-md"
+            className="flex gap-2 items-center justify-center bg-black text-white min-w-[120px] h-min p-2 rounded-md"
             onClick={() => {
               setEditing(false);
               updateProject();
             }}
           >
-            Save
+            <i className="ri-save-2-fill"></i>
+            <span>Save</span>
           </button>
         )}
-        <Link to={"/"}>
+        <Link to={`/${id}`}>
           <button
-            className="bg-red-500 text-white min-w-[100px] h-min p-2 rounded-md"
+            className="flex gap-2 items-center justify-center bg-red-500 text-white min-w-[120px] h-min p-2 rounded-md"
             onClick={deleteProject}
           >
+            <i className="ri-delete-bin-7-fill"></i>
             Delete
           </button>
         </Link>

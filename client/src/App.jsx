@@ -3,7 +3,8 @@ import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProjectPage from "./pages/ProjectPage";
-import ConnectWithUs from "./pages/ConnectWithUs";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 const App = () => {
   return (
@@ -11,10 +12,17 @@ const App = () => {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/connect" element={<ConnectWithUs />} />
-          {/* CREATE DASHBOARD FOR AUTHORIZED USER */}
-          <Route path="/" element={<HomePage />} />
-          <Route path="/project/:projectId" element={<ProjectPage />} />
+          <Route path="/" element={<div>Landing Page Here</div>} />
+
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+
+          {/*PROTECTED ROUTES */}
+          <Route path="/:id" element={<HomePage />} />
+          <Route
+            path="/:id/project/:projectId"
+            element={<ProjectPage />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

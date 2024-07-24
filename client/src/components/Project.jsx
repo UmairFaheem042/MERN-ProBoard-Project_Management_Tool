@@ -1,10 +1,11 @@
 import React from "react";
 import { convertDatetime } from "../utils/datetime";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Project = ({ data }) => {
+  const { id } = useParams();
   return (
-    <Link to={`/project/${data._id}`}>
+    <Link to={`/${id}/project/${data._id}`}>
       <div className="relative bg-white border border-[rgba(0,0,0,0.1)] py-4 px-6 rounded-lg flex flex-col justify-center  h-[150px]">
         <div className="flex flex-col flex-1">
           <h2 className="font-bold text-lg">{data.title}</h2>

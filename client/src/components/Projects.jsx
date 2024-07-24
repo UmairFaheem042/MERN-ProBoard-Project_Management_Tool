@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Project from "./Project";
 import CreateProject from "./CreateProject";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LoadingScreen from "./LoadingScreen";
 
 const Projects = ({ setIsLoading, isLoading }) => {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [renderApp, setRenderApp] = useState(false);
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     async function fetchProjects() {
       setIsLoading(true);
+      
       try {
-        const response = await fetch("http://localhost:3000/project");
+        const response = await fetch(`http://localhost:3000/${id}/project`);
         const data = await response.json();
+        console.log(data)
         setProjects(data);
         setTimeout(() => {
           setIsLoading(false);

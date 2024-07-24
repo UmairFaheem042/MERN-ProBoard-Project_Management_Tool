@@ -36,14 +36,12 @@ const Task = ({ data, setRenderApp }) => {
       key={data._id}
       className={`${
         isDragging ? "opacity-25" : "opacity-100"
-      } relative bg-white p-3 border rounded-md text-[0.9rem] cursor-pointer flex flex-col gap-2 group`}
+      }  bg-white p-3 border rounded-md text-[0.9rem] cursor-pointer flex items-baseline gap-2 hover:bg-emerald-50`}
     >
-      <p className="w-full break-words">{data.title}</p>
+      <p className="w-[91%] break-words">{data.title}</p>
       <button
         onClick={() => handleDeleteTask(data._id)}
-        className={
-          "z-10 absolute top-[-10px] right-[-10px] ri-delete-bin-line py-1 px-2 rounded hidden group-hover:block hover:bg-red-400"
-        }
+        className={"ri-delete-bin-line py-1 px-2  rounded hover:bg-red-400 "}
       ></button>
     </div>
   );

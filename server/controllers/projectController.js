@@ -1,17 +1,25 @@
 const Project = require("../models/projectModel");
 const Task = require("../models/taskModel");
+const User = require("../models/user");
 
 exports.getProjects = async (req, res) => {
   try {
-    const projects = await Project.find().populate("tasks");
-    res.status(200).json(projects);
+    const { id } = req.params;
+    const user = await User.findById(id).populate("projects");
+    // const projects = await Project.find().populate("tasks");
+
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    res.status(200).json(user.projects);
+    // res.status(200).json(projects);
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 
 exports.getOneProject = async (req, res) => {
   const projectId = req.params.projectId;
+  const { id } = req.params;
   try {
     const project = await Project.findById(projectId);
 
@@ -25,11 +33,21 @@ exports.getOneProject = async (req, res) => {
 };
 
 exports.createProject = async (req, res) => {
-  const { title } = req.body;
+  const { title, id } = req.body;
   try {
     const newProject = new Project({ title });
     await newProject.save();
-    res.status(200).json(newProject);
+
+    const user = await User.findById(id);
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+    user.projects.push(newProject._id);
+    await user.save();
+    res.status(201).json({ success: true, project: newProject });
   } catch (error) {
     res.status(409).json({ message: error.message });
   }

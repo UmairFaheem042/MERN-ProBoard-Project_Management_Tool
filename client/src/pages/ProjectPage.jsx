@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import ProjectStrip from "../components/ProjectStrip";
 
 const ProjectPage = () => {
-  const { projectId } = useParams();
+  const { id, projectId } = useParams();
   const [renderApp, setRenderApp] = useState(false);
   const [project, SetProject] = useState({
     title: "",
@@ -14,7 +14,7 @@ const ProjectPage = () => {
   useEffect(() => {
     async function fetchProjectDetails() {
       const response = await fetch(
-        `http://localhost:3000/project/${projectId}`
+        `http://localhost:3000/${id}/project/${projectId}`
       );
       const data = await response.json();
       SetProject(data);

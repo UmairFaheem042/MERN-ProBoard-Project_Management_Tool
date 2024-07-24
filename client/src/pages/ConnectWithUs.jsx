@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 
 const ConnectWithUs = () => {
+
+
+  const styles = {
+    input:
+      "text-[0.9rem] w-full px-2 py-2 rounded bg-[rgba(0,0,0,0.04)] border border-[rgba(0,0,0,0.1)] outline-none",
+  };
   const [loginScreen, setLoginScreen] = useState(true);
   return (
     <div className="h-[90vh] flex flex-col md:flex-row">
@@ -14,23 +20,23 @@ const ConnectWithUs = () => {
             <input
               type="text"
               placeholder="Enter your name"
-              className="text-[0.9rem] w-full px-2 py-1 rounded bg-[rgba(0,0,0,0.04)] border border-[rgba(0,0,0,0.1)] outline-none "
+              className={styles.input}
               required
             />
           )}
           <input
             type="email"
             placeholder="Enter your email"
-            className="text-[0.9rem] w-full px-2 py-1 rounded bg-[rgba(0,0,0,0.04)] border border-[rgba(0,0,0,0.1)] outline-none "
+            className={styles.input}
             required
           />
           <input
             type="password"
             placeholder="Enter your password"
-            className="text-[0.9rem] w-full px-2 py-1 rounded bg-[rgba(0,0,0,0.04)] border border-[rgba(0,0,0,0.1)] outline-none "
+            className={styles.input}
             required
           />
-          <button className="text-[0.9rem] bg-emerald-500 w-full rounded p-1 font-medium">
+          <button className="text-[0.9rem] bg-emerald-500 w-full rounded p-2 font-medium">
             {loginScreen ? "Sign In" : "Create Account"}
           </button>
           <p className="text-center text-[0.9rem] text-[rgba(0,0,0,0.4)] font-semibold">
