@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProjectPage from "./pages/ProjectPage";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import LandingPage from "./pages/LandingPage";
 
 const App = () => {
   return (
@@ -12,7 +13,7 @@ const App = () => {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<div>Landing Page Here</div>} />
+          <Route path="/" element={<LandingPage/>} />
 
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />

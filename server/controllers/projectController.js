@@ -85,6 +85,14 @@ exports.deleteProject = async (req, res) => {
     if (!project) {
       return res.status(404).json({ message: "Project not found" });
     }
+
+    // update User too
+    await User.updateMany(
+      { projects: projectId },
+      { $pull: { projects: projectId } }
+    );
+
+    res.status(200).json({ message: "Project deleted successfully" });
   } catch (error) {
     res.status(409).json({ message: error.message });
   }

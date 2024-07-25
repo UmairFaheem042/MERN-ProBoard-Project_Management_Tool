@@ -13,11 +13,12 @@ const KanbanBoard = ({ setRenderApp, renderApp }) => {
   const [title, setTitle] = useState("");
 
   const { projectId } = useParams();
+  const apiURL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     async function fetchTasks() {
       try {
-        const response = await fetch(`http://localhost:3000/${projectId}/task`);
+        const response = await fetch(`${apiURL}/${projectId}/task`);
         if (!response.ok) throw new Error("Error fetching tasks");
         const data = await response.json();
 
@@ -40,7 +41,7 @@ const KanbanBoard = ({ setRenderApp, renderApp }) => {
   async function addTask(e) {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:3000/${projectId}/task`, {
+      const response = await fetch(`${apiURL}/${projectId}/task`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

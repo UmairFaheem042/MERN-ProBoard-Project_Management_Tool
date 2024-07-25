@@ -9,15 +9,15 @@ const Projects = ({ setIsLoading, isLoading }) => {
   const { id } = useParams();
   const [renderApp, setRenderApp] = useState(false);
   const [projects, setProjects] = useState([]);
+  const apiURL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     async function fetchProjects() {
       setIsLoading(true);
-      
       try {
-        const response = await fetch(`http://localhost:3000/${id}/project`);
+        const response = await fetch(`${apiURL}/${id}/project`);
         const data = await response.json();
-        console.log(data)
+        console.log(data);
         setProjects(data);
         setTimeout(() => {
           setIsLoading(false);
@@ -37,7 +37,7 @@ const Projects = ({ setIsLoading, isLoading }) => {
       );
       setProjects(updatedProjects);
       const response = await fetch(
-        `http://localhost:3000/project/${projectId}`,
+        `${apiURL}/project/${projectId}`,
         {
           method: "DELETE",
         }

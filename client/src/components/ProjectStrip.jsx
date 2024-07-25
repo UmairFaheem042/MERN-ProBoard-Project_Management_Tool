@@ -6,6 +6,7 @@ const ProjectStrip = ({ project, setRenderApp }) => {
   const { id, projectId } = useParams();
   const [title, setTitle] = useState(project.title);
   const [editing, setEditing] = useState(false);
+  const apiURL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     setTitle(project.title);
@@ -14,7 +15,7 @@ const ProjectStrip = ({ project, setRenderApp }) => {
   async function deleteProject() {
     try {
       const response = await fetch(
-        `http://localhost:3000/project/${projectId}`,
+        `${apiURL}/project/${projectId}`,
         {
           method: "DELETE",
         }
@@ -32,7 +33,7 @@ const ProjectStrip = ({ project, setRenderApp }) => {
   async function updateProject() {
     try {
       const response = await fetch(
-        `http://localhost:3000/project/${projectId}`,
+        `${apiURL}/project/${projectId}`,
         {
           method: "PUT",
           headers: {

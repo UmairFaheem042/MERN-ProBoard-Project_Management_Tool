@@ -1,5 +1,7 @@
 # CLIENT-SIDE
 /client/node_modules
+/client/.env
+
 
 
 # SERVER-SIDE

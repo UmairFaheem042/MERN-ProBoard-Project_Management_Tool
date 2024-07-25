@@ -8,3 +8,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.heroText{
+  font-size: clamp(18px, 6vw, 40px);
+}
+
+.heroSubText{
+  font-size: clamp(12px, 2vw, 15px);
+}

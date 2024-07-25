@@ -5,12 +5,13 @@ const CreateProject = ({ setRenderApp }) => {
   const { id } = useParams();
   const [isCreating, setIsCreating] = useState(false);
   const [title, setTitle] = useState("");
+  const apiURL = import.meta.env.VITE_API_URL;
 
   async function addProject(e) {
     e.preventDefault();
    
     try {
-      const response = await fetch("http://localhost:3000/project", {
+      const response = await fetch(`${apiURL}/project`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

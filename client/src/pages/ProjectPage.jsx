@@ -10,11 +10,13 @@ const ProjectPage = () => {
     title: "",
     dateTime: "",
   });
+  const apiURL = import.meta.env.VITE_API_URL;
+
 
   useEffect(() => {
     async function fetchProjectDetails() {
       const response = await fetch(
-        `http://localhost:3000/${id}/project/${projectId}`
+        `${apiURL}/${id}/project/${projectId}`
       );
       const data = await response.json();
       SetProject(data);

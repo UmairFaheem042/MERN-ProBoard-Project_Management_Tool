@@ -18,6 +18,8 @@ const Column = ({
   setRenderApp,
 }) => {
   const { projectId } = useParams();
+  const apiURL = import.meta.env.VITE_API_URL;
+
 
   let labelColor;
 
@@ -50,7 +52,7 @@ const Column = ({
       }
 
       const response = await fetch(
-        `http://localhost:3000/${projectId}/task/${taskId}`,
+        `${apiURL}/${projectId}/task/${taskId}`,
         {
           method: "PATCH",
           headers: {

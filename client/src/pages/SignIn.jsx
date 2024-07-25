@@ -1,40 +1,56 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const apiURL = import.meta.env.VITE_API_URL;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [serverMessage, setServerMessage] = useState("");
+  let errorMsg;
 
   async function handleFormSubmit(e) {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/signin", {
+      const response = await fetch(`${apiURL}/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
+
       const data = await response.json();
-      console.log(data);
+      errorMsg = data.message;
+
       if (!response.ok) {
         throw new Error("Failed to register User");
       }
-      setServerMessage(data.message);
+
       setEmail("");
       setPassword("");
+      navigate(`/${data.user._id}`);
     } catch (error) {
       console.log("inside catch block");
-      setServerMessage(error.message || "Failed to register User");
+      toast.error(errorMsg, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   }
+
   const styles = {
     input:
       "text-[0.9rem] w-full px-2 py-2 rounded bg-[rgba(0,0,0,0.04)] border border-[rgba(0,0,0,0.1)] outline-none",
   };
+
   return (
     <div className="h-[90vh] flex flex-col md:flex-row">
       <div className="md:block hidden h-full flex-1 w-full bg-emerald-500"></div>
@@ -76,6 +92,7 @@ const SignIn = () => {
           </p>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };

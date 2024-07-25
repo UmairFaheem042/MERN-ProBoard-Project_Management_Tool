@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -8,13 +10,14 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [serverMessage, setServerMessage] = useState("");
+  let errorMsg;
+  const apiURL = import.meta.env.VITE_API_URL;
 
   async function handleFormSubmit(e) {
     e.preventDefault();
     console.table(name, email);
     try {
-      const response = await fetch("http://localhost:3000/signup", {
+      const response = await fetch(`${apiURL}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,15 +25,25 @@ const SignUp = () => {
         body: JSON.stringify({ name, email, password }),
       });
       const data = await response.json();
+      errorMsg = data.message;
       console.log(data);
       if (!response.ok) {
         throw new Error("Failed to register User");
       }
 
-      setServerMessage(data.message);
+      navigate("/signin");
+
     } catch (error) {
       console.log("inside catch block");
-      setServerMessage(error.message || "Failed to register User");
+      toast.error(errorMsg, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
     setName("");
     setEmail("");
@@ -94,6 +107,7 @@ const SignUp = () => {
           </p>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
