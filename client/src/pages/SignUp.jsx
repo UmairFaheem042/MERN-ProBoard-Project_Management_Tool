@@ -55,8 +55,8 @@ const SignUp = ({ shouldLoad }) => {
   };
 
   return (
-    <div className="h-[90vh] flex flex-col md:flex-row">
-      <div className="md:block hidden h-full flex-1 w-full bg-emerald-500"></div>
+    <div className="flex-1 flex flex-col md:flex-row">
+      <div className="md:block hidden flex-1 w-full bg-emerald-500"></div>
       <div className="flex flex-col items-center justify-center gap-4 flex-1 px-6 py-2">
         <h1 className="text-2xl font-semibold text-center">
           Register at ProBoard

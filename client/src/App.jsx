@@ -21,7 +21,7 @@ const App = () => {
 
   if (loading) return <Loading />;
   return (
-    <div className="flex flex-col min-h-screen bg-[#F3F4F6]">
+    <div className="flex flex-col min-h-screen bg-[#F3F4F6] ">
       <BrowserRouter>
         <Header shouldLoad={shouldLoad}/>
         <Routes>

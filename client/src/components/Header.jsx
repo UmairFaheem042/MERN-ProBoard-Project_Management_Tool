@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const Header = ({ shouldLoad }) => {
   const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
 
   function handleLogOut() {
     localStorage.removeItem("token");
@@ -22,6 +23,17 @@ const Header = ({ shouldLoad }) => {
           </div>
         </Link>
         <div className="flex gap-2">
+          {token && (
+            <Link to={`/${userId}`}>
+              {/* <i className="ri-logout-box-r-line text-lg cursor-pointer"></i> */}
+              <button
+                className="bg-black text-white text-[0.9rem] px-3 py-2 rounded"
+                onClick={() => shouldLoad()}
+              >
+                My Projects
+              </button>
+            </Link>
+          )}
           {token ? (
             <>
               <button

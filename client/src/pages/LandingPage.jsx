@@ -12,7 +12,7 @@ const LandingPage = ({ shouldLoad }) => {
   }
 
   return (
-    <div className="px-6 py-4 min-h-[90vh] flex flex-col items-center justify-center">
+    <div className="flex-1 px-6 py-4 flex flex-col items-center justify-center ">
       <div className="max-w-[700px] w-full mx-auto flex flex-col gap-6 items-center text-center">
         <h1 className="heroText text-4xl font-medium leading-tight">
           Visualize and manage your projects effortlessly with <b>ProBoard</b>
