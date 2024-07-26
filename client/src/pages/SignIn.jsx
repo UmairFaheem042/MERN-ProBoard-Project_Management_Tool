@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const SignIn = () => {
+const SignIn = ({ shouldLoad }) => {
   const navigate = useNavigate();
   const apiURL = import.meta.env.VITE_API_URL;
 
@@ -23,16 +23,23 @@ const SignIn = () => {
       });
 
       const data = await response.json();
+      console.log(data);
       errorMsg = data.message;
 
       if (!response.ok) {
         throw new Error("Failed to register User");
       }
 
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data.user._id);
+
+      shouldLoad();
+
       setEmail("");
       setPassword("");
       navigate(`/${data.user._id}`);
     } catch (error) {
+      console.log(errorMsg);
       console.log("inside catch block");
       toast.error(errorMsg, {
         position: "top-right",
@@ -84,6 +91,7 @@ const SignIn = () => {
             <span
               className="text-emerald-500 cursor-pointer"
               onClick={() => {
+                shouldLoad();
                 navigate("/signup");
               }}
             >

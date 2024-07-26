@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const SignUp = () => {
+const SignUp = ({ shouldLoad }) => {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -30,9 +30,8 @@ const SignUp = () => {
       if (!response.ok) {
         throw new Error("Failed to register User");
       }
-
+      shouldLoad();
       navigate("/signin");
-
     } catch (error) {
       console.log("inside catch block");
       toast.error(errorMsg, {
@@ -99,6 +98,7 @@ const SignUp = () => {
             <span
               className="text-emerald-500 cursor-pointer"
               onClick={() => {
+                shouldLoad();
                 navigate("/signin");
               }}
             >
