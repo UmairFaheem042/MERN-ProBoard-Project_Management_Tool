@@ -26,14 +26,14 @@ const SignUp = ({ shouldLoad }) => {
       });
       const data = await response.json();
       errorMsg = data.message;
-      console.log(data);
+      // console.log(data);
       if (!response.ok) {
         throw new Error("Failed to register User");
       }
       shouldLoad();
       navigate("/signin");
     } catch (error) {
-      console.log("inside catch block");
+      // console.log("inside catch block");
       toast.error(errorMsg, {
         position: "top-right",
         autoClose: 5000,

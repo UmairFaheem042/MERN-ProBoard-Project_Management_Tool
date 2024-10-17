@@ -17,7 +17,7 @@ const Projects = ({ setIsLoading, isLoading }) => {
       try {
         const response = await fetch(`${apiURL}/${id}/project`);
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setProjects(data);
         setTimeout(() => {
           setIsLoading(false);
@@ -45,7 +45,7 @@ const Projects = ({ setIsLoading, isLoading }) => {
       if (!response.ok) {
         throw new Error("Failed to delete project");
       }
-      console.log("Project deleted successfully");
+      // console.log("Project deleted successfully");
       navigate("/");
       setRenderApp((prev) => !prev);
     } catch (error) {

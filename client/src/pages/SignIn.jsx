@@ -23,7 +23,7 @@ const SignIn = ({ shouldLoad }) => {
       });
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       errorMsg = data.message;
 
       if (!response.ok) {
@@ -40,7 +40,7 @@ const SignIn = ({ shouldLoad }) => {
       navigate(`/${data.user._id}`);
     } catch (error) {
       console.log(errorMsg);
-      console.log("inside catch block");
+      // console.log("inside catch block");
       toast.error(errorMsg, {
         position: "top-right",
         autoClose: 5000,

@@ -23,7 +23,7 @@ const ProjectStrip = ({ project, setRenderApp }) => {
       if (!response.ok) {
         throw new Error("Failed to delete project");
       }
-      console.log("Project deleted successfully");
+      // console.log("Project deleted successfully");
       setRenderApp((prev) => !prev);
     } catch (error) {
       console.error("Error deleting project:", error.message);
@@ -43,7 +43,7 @@ const ProjectStrip = ({ project, setRenderApp }) => {
         }
       );
       if (!response.ok) throw new Error("Failed to update project");
-      console.log("Project updated successfully");
+      // console.log("Project updated successfully");
       setRenderApp((prev) => !prev);
     } catch (error) {
       console.error("Error updating project:", error.message);

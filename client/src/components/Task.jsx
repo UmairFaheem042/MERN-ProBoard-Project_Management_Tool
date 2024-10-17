@@ -23,7 +23,7 @@ const Task = ({ data, setRenderApp }) => {
       if (!response.ok) {
         throw new Error("Failed to delete project");
       }
-      console.log("Project deleted successfully");
+      // console.log("Project deleted successfully");
       setRenderApp((prev) => !prev);
     } catch (error) {
       console.error("Error deleting project:", error.message);

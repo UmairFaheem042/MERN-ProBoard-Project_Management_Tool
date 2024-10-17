@@ -23,7 +23,7 @@ const CreateProject = ({ setRenderApp }) => {
       }
       const data = await response.json();
       setRenderApp((prev) => !prev);
-      console.log("New project added:", data);
+      // console.log("New project added:", data);
       setIsCreating(false);
       setTitle("");
     } catch (error) {

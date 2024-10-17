@@ -32,7 +32,9 @@ const KanbanBoard = ({ setRenderApp, renderApp }) => {
         setProgress(progressFiltered);
         setDone(doneFiltered);
       } catch (error) {
-        console.log("FROM CATCH BLOCK: Error occurred while fetching tasks");
+        console.log(
+          "FROM CATCH BLOCK: Error occurred while fetching tasks" + error
+        );
       }
     }
     fetchTasks();
