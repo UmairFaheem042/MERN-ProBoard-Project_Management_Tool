@@ -12,14 +12,13 @@ const Task = ({ data, setRenderApp }) => {
     }),
   }));
 
+  const apiURL = import.meta.env.VITE_API_URL;
+
   async function handleDeleteTask(taskId) {
     try {
-      const response = await fetch(
-        `http://localhost:3000/${projectId}/task/${taskId}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`${apiURL}/${projectId}/task/${taskId}`, {
+        method: "DELETE",
+      });
       if (!response.ok) {
         throw new Error("Failed to delete project");
       }
